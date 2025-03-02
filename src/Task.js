@@ -74,7 +74,7 @@ export default class Task {
     }
 
     static fromJson(json) {
-        const data = JSON.parse(json);
+        const data = typeof json === "string" ? JSON.parse(json) : json;
 
         const task = new Task(
             data.title,
