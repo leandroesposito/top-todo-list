@@ -3,7 +3,8 @@ import Task from "./Task.js";
 export default class Project {
     #tasks = [];
 
-    constructor(title, description) {
+    constructor(id, title, description) {
+        this.id = id;
         this.title = title;
         this.description = description;
     }
@@ -31,7 +32,7 @@ export default class Project {
     fromJson() {
         const data = typeof json === "string" ? JSON.parse(json) : json;
 
-        const project = new Project(data.title, data.description);
+        const project = new Project(data.id, data.title, data.description);
 
         for (let i = 0; i < data.tasks.length; i++) {
             const task = data.tasks[i];
