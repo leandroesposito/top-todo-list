@@ -90,7 +90,7 @@ export default class Task {
         this.#subtasks.splice(index, 1);
     }
 
-    static fromJson(json) {
+    static fromJSON(json) {
         const data = typeof json === "string" ? JSON.parse(json) : json;
 
         const task = new Task(

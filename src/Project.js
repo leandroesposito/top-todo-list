@@ -29,14 +29,14 @@ export default class Project {
         }
     }
 
-    fromJson() {
+    fromJSON() {
         const data = typeof json === "string" ? JSON.parse(json) : json;
 
         const project = new Project(data.id, data.title, data.description);
 
         for (let i = 0; i < data.tasks.length; i++) {
             const task = data.tasks[i];
-            project.addTask(Task.fromJson(task));
+            project.addTask(Task.fromJSON(task));
         }
 
         return project;
