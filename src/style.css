@@ -1,6 +1,226 @@
+:root {
+    --bg-color-dark: rgb(241, 241, 241);
+    --accent-color: #1167c6;
+    --accent-color-light: rgb(160, 206, 255);
+    --font-color: rgb(46, 46, 46);
+    --font-color-light: rgb(70, 70, 70);
+    --line-color: rgb(223, 223, 223);
+
+}
+
 body {
     margin: 0;
     padding: 0;
     font-size: 16px;
     min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-color-dark);
+}
+
+button {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+}
+
+.body {
+    margin: 1rem;
+    min-height: 90vh;
+    background-color: white;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: 20rem 1fr;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+    color: var(--font-color)
+}
+
+.sidebar {
+    background-color: var(--bg-color-dark);
+    padding: 2rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    font-size: 1.2rem;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.add-button {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding: .5rem;
+}
+
+.plus-icon {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    font-family: serif;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+.my-projects-section {
+    font-weight: bold;
+    color: var(--font-color);
+}
+
+.my-projects-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+button.project-title {
+    border: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: none;
+    text-align: left;
+    color: var(--font-color);
+    cursor: pointer;
+    border-radius: 1rem;
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+button.project-title:hover,
+.add-button:hover,
+.dots-icon:hover {
+    background-color: var(--accent-color-light);
+    border-radius: .5rem;
+}
+
+.folder-icon {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background: url("./icons/folder.svg");
+    background-size: cover;
+
+}
+
+.current-project {
+    padding: 4rem 2rem;
+    font-size: 1.1rem;
+    max-width: 80ch;
+}
+
+.current-project .project {
+    display: grid;
+    gap: 2rem;
+}
+
+.current-project .project-title {
+    font-size: 2rem;
+    font-weight: 600;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.title-icon {
+    width: 2rem;
+    height: 2rem;
+    background: url("./icons/logo.svg");
+    background-size: cover;
+}
+
+.project-description {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--font-color-light);
+}
+
+.tasks {
+    display: grid;
+    gap: 2rem;
+}
+
+.task {
+    display: grid;
+    gap: 1rem;
+}
+
+.task-subtasks {
+    display: grid;
+    gap: .5rem;
+}
+
+.subtask {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.task-title {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--line-color);
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.3rem;
+    height: 2rem;
+    ;
+}
+
+.dots-icon {
+    width: 2rem;
+    height: 2rem;
+    background: url("./icons/dots-horizontal.svg");
+    background-size: cover;
+    cursor: pointer;
+}
+
+.task-description {
+    font-weight: 600;
+    color: var(--font-color-light)
+}
+
+
+
+/*
+
+
+FORM
+
+
+*/
+
+.form-row {
+    display: grid;
+    gap: .5rem;
+}
+
+form input,
+form textarea {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--font-color);
+    border: 2px solid var(--font-color-light);
+    border-radius: .5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form input:invalid {
+    outline: 2px solid red;
+}
+
+form label div {
+    font-size: 1rem;
+    align-self: flex-end;
+    color: var(--font-color-light);
 }
