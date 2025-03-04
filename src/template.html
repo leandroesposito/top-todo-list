@@ -241,6 +241,14 @@ My project. description. description. description. descript description. descrip
             subtaskCheckbox.checked = !subtaskCheckbox.checked;
             console.log("after", subtaskCheckbox.checked);
         });
+
+        addSubtaskButton = document.querySelector(".add-subtask");
+        form = document.querySelector("form");
+        subtasksContainer = form.querySelector(".subtasks .form-row");
+        addSubtaskButton.addEventListener("click", (event) => {
+            const input = document.createElement("input");
+            subtasksContainer.appendChild(input);
+        })
     </script>
 </body>
 
