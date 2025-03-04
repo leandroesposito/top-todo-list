@@ -46,6 +46,57 @@
             </div>
         </div>
         <div class="current-project">
+<form class="project">
+                <div class="project-title">
+                    <div class="title-icon icon"></div>
+                    New Task
+                </div>
+                <div class="form-row">
+                    <label for="task-title" class="task-title">
+                        Task title
+                    </label>
+                    <input type="text" id="task-title" name="task-title">
+                </div>
+                <div class="form-row">
+                    <label for="task-description" class="task-title">
+                        Task description
+                    </label>
+                    <input type="text" id="task-description" name="task-description">
+                </div>
+                <div class="form-row">
+                    <label for="task-due-date" class="task-title">
+                        Due Date
+                    </label>
+                    <input type="datetime-local" id="task-due-date" name="task-due-date">
+                </div>
+                <div class="form-row">
+                    <label for="task-priority" class="task-title">
+                        Priority
+                        <div>(minimum: 1 | maximum: 5)</div>
+                    </label>
+                    <input type="number" min="1" max="5" id="task-priority" name="task-priority">
+                </div>
+                <div class="form-row">
+                    <label for="task-notes" class="task-title">
+                        Notes
+                    </label>
+                    <textarea name="task-notes" id="task-notes" rows="10"></textarea>
+                </div>
+                <div class="subtasks">
+                    <div class="form-row">
+                        <label for="subtask-description" class="task-title">
+                            Subtasks
+                        </label>
+                        <input type="text" id="subtask-description" name="subtask-description[]">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="add-subtask add-button">
+                        <span class="plus-icon icon"> + </span>
+                        Add Subtask
+                    </button>
+                </div>
+            </form>
             <div class="project">
                 <div class="project-title">
 <div class="title-icon icon"></div>
