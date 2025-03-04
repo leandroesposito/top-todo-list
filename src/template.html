@@ -8,7 +8,182 @@
 </head>
 
 <body>
+    <div class="body">
+        <div class="sidebar">
+            <div class="user">
+                <div class="user-name">
 
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="create-project-container">
+                    <button class="create-project">
+                        <div class="icon"></div>
+                        Create Project
+                    </button>
+                </div>
+                <div class="my-projects-section-title">
+                    My Projects
+                </div>
+                <div class="my-projects-container">
+                    <div class="project-title">
+                        Project 1
+                    </div>
+                    <div class="project-title">
+                        Project 2
+                    </div>
+                    <div class="project-title">
+                        Project 3
+                    </div>
+                    <div class="project-title">
+                        Project 4
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="current-project">
+            <div class="project">
+                <div class="project-title">
+                    Project 1
+                </div>
+                <div class="project-description">
+
+                </div>
+                <div class="tasks">
+                    <div class="task">
+                        <div class="task-title">
+                            Task 1
+                        </div>
+                        <div class="task-description">
+                            My task description description description description description description description
+                            description description description description description description description
+                            description description description description
+                        </div>
+                        <div class="task-subtasks">
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .sub task
+                                    description .sub task description .sub task description .sub task description .sub
+                                    task description .sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="task-title">
+                            Task 1
+                        </div>
+                        <div class="task-description">
+                            My task description . description . description . description . description . description .
+                            description . description . description . description . description . description .
+                        </div>
+                        <div class="task-subtasks">
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="task-title">
+                            Task 1
+                        </div>
+                        <div class="task-description">
+                            My task description . description . description . description . description . description .
+                            description . description . description . description . description . description .
+                        </div>
+                        <div class="task-subtasks">
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                            <div class="subtask">
+                                <input type="checkbox">
+                                <div class="subtask-description">
+                                    sub task description .sub task description .sub task description .
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="task-buttons">
+                    <button class="add-task">
+                        <div class="icon"></div>
+                        Add Task
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        input[type="checkbox"] {
+            pointer-events: none;
+        }
+    </style>
+    <script>
+        subtaskContainer = document.querySelector(".task-subtasks");
+        subtaskContainer.addEventListener("click", (event) => {
+            const target = event.target;
+            const subtask = target.closest(".subtask");
+            const subtaskCheckbox = subtask.querySelector("input");
+            console.log("before", subtaskCheckbox.checked);
+            subtaskCheckbox.checked = !subtaskCheckbox.checked;
+            console.log("after", subtaskCheckbox.checked);
+        });
+    </script>
 </body>
 
 </html>
