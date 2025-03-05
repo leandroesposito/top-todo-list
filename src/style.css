@@ -286,6 +286,7 @@ form textarea {
     border-radius: .5rem;
     width: 100%;
     box-sizing: border-box;
+    padding: .5rem;
 }
 
 form input:invalid {
