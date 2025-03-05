@@ -55,6 +55,9 @@ button {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
     padding: .5rem;
+    display: flex;
+    align-items: baseline;
+    gap: .5rem;
 }
 
 .plus-icon {
