@@ -146,7 +146,7 @@ button.project-title:hover,
 
 .tasks {
     display: grid;
-    gap: 2rem;
+    gap: 7rem;
 }
 
 .task {
