@@ -165,15 +165,86 @@ button.project-title:hover,
     align-items: center;
 }
 
-.task-title {
+.task-title,
+.notes-title {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     border-bottom: 3px solid var(--line-color);
     color: var(--accent-color);
     font-weight: bold;
     font-size: 1.3rem;
     height: 2rem;
-    ;
+    padding-bottom: .5rem;
+}
+
+.task-status-details {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 2rem;
+}
+
+.task-status-details>div::before {
+    padding: .2rem 1rem;
+    border-radius: .5rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.task-due-date {
+    font-size: 1rem;
+    color: var(--font-color-light);
+    font-weight: normal;
+}
+
+.task-priority[data-priority="1"]::before {
+    content: "Low";
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.task-priority[data-priority="2"]::before {
+    content: "Medium";
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.task-priority[data-priority="3"]::before {
+    content: "High";
+    background-color: #ffe5cc;
+    color: #cc5500;
+}
+
+.task-priority[data-priority="4"]::before {
+    content: "Very High";
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.task-priority[data-priority="5"]::before {
+    content: "Critic";
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.task-complete-status::before {
+    border: 2px solid var(--line-color);
+}
+
+.task-complete-status[data-complete-status="pending"]::before {
+    content: "Pending";
+}
+
+.task-complete-status[data-complete-status="completed"]::before {
+    content: "Completed";
+    background-color: var(--accent-color-light);
+    border: none;
+}
+
+.notes-title {
+    font-size: 1.2rem;
 }
 
 .dots-icon {
