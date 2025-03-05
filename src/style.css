@@ -165,8 +165,7 @@ button.project-title:hover,
     align-items: center;
 }
 
-.task-title,
-.notes-title {
+.section-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
