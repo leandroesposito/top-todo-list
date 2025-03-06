@@ -29,7 +29,7 @@ export default class Project {
         }
     }
 
-    fromJSON() {
+    static fromJSON(json) {
         const data = typeof json === "string" ? JSON.parse(json) : json;
 
         const project = new Project(data.id, data.title, data.description);
