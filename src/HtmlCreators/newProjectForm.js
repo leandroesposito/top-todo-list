@@ -80,7 +80,7 @@ export default function createNewProjectForm() {
     const [descriptionLabel, descriptionInput] = createLabelInput({
         label: "Project description",
         id: "project-description",
-        labelClassList: "section-title",
+        labelClassList: ["section-title"],
         type: "textarea",
     });
     descriptionRow.appendChild(descriptionLabel);
