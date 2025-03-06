@@ -4,7 +4,7 @@ export default class ProjectsManager {
     constructor(user) {
         this.user = user;
         this.projects = ProjectsDatabaseManager.getUserProjects(user);
-        this.currenProject = projects[0];
+        this.currenProject = this.projects[0] ?? null;
     }
 
     addProject(project) {
