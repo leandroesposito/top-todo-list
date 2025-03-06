@@ -3,8 +3,8 @@ import Task from "./Task.js";
 export default class Project {
     #tasks = [];
 
-    constructor(id, title, description) {
-        this.id = id;
+    constructor(title, description) {
+        this.id = Date.now().toString(36);
         this.title = title;
         this.description = description;
     }
