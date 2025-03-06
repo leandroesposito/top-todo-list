@@ -20,7 +20,7 @@ export default class ProjectsDatabaseManager {
     }
 
     static loadProject(id) {
-        return Project.fromJSON(localStorage.getItem(id))
+        return Project.fromJSON(localStorage.getItem(id));
     }
 
     static getUserProjects(user) {
