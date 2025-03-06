@@ -93,9 +93,9 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="add-subtask add-button">
+                    <button type="button" class="create-subtask add-button">
                         <span class="plus-icon icon"> + </span>
-                        Add Subtask
+                        Create Subtask
                     </button>
                 </div>
             </form>
@@ -253,9 +253,9 @@
                     </div>
                 </div>
                 <div class="task-buttons">
-                    <button class="add-task add-button">
+                    <button class="create-task add-button">
                         <span class="plus-icon icon">+</span>
-                        Add Task
+                        Create Task
                     </button>
                 </div>
             </div>
@@ -277,7 +277,7 @@
             console.log("after", subtaskCheckbox.checked);
         });
 
-        addSubtaskButton = document.querySelector(".add-subtask");
+        addSubtaskButton = document.querySelector(".create-subtask");
         form = document.querySelector("form");
         subtasksContainer = form.querySelector(".subtasks .form-row");
         addSubtaskButton.addEventListener("click", (event) => {
