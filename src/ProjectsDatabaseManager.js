@@ -12,7 +12,7 @@ export default class ProjectsDatabaseManager {
      */
 
     static saveProject(user, project) {
-        const userProjects = JSON.parse(localStorage.getItem(user));
+        const userProjects = JSON.parse(localStorage.getItem(user)) ?? [];
         userProjects.push(project.id);
         localStorage.setItem(user, JSON.stringify(userProjects));
 
@@ -24,7 +24,7 @@ export default class ProjectsDatabaseManager {
     }
 
     static getUserProjects(user) {
-        const userProjects = JSON.parse(localStorage.getItem(user));
+        const userProjects = JSON.parse(localStorage.getItem(user)) ?? [];
         const projects = [];
 
         for (const projectId of userProjects) {
