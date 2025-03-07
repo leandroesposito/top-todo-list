@@ -21,6 +21,8 @@ const loadContent = (function () {
 
         const project = new Project(projectTitle, projectDescription);
         projectManager.addProject(project);
+
+        viewCurrentProject();
     }
 
     function loadProjectCreation() {
