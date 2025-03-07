@@ -1,6 +1,7 @@
 import "./style.css";
 import createNewProjectForm from "./HtmlCreators/newProjectForm.js";
 import createNewTaskForm from "./HtmlCreators/newTaskForm.js";
+import createProjectViewer from "./HtmlCreators/projectViewer.js";
 import ProjectsManager from "./ProjectsManager.js";
 import Project from "./Project.js";
 
@@ -23,6 +24,21 @@ const loadContent = (function () {
 
             myProjectsContainer.appendChild(projectButton);
         });
+    }
+
+    function viewProject(projectIndex) {
+        if (projectIndex !== undefined) {
+            projectManager.setCurrentProject(projectIndex);
+        }
+
+        setContent(createProjectViewer, projectManager.currenProject);
+
+        const createTaskButton = document.querySelector(".create-task");
+        createTaskButton.addEventListener("click", loadTaskCreation);
+    }
+
+    function viewCurrentProject() {
+        viewProject();
     }
         mainContainer.innerHTML = "";
         mainContainer.appendChild(creatorFunction());
