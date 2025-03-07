@@ -1,9 +1,7 @@
 import * as utils from "./utils.js"
 
 export default function createNewProjectForm() {
-    const form = document.createElement("form");
-    form.classList.add("content");
-
+    const form = utils.createElement("form", "content");
 
     const projectTitleDiv = utils.createMainTitle("New Project");
     form.appendChild(projectTitleDiv);
