@@ -83,6 +83,10 @@ export default class Task {
     }
 
     addSubtask(description) {
+        if (!description) {
+            return;
+        }
+
         this.#subtasks.push(new Subtask(description));
     }
 
