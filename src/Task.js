@@ -35,7 +35,8 @@ export default class Task {
 
     get remainingTime() {
         const currentTime = new Date().getTime();
-        const difference = currentTime - this._dueDate.getTime();
+        const isNegative = this._dueDate.getTime() < currentTime;
+        const difference = Math.abs(this._dueDate.getTime() - currentTime);
 
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         const hours = Math.floor((difference % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)));
@@ -43,6 +44,7 @@ export default class Task {
         const seconds = Math.floor((difference % (1000 * 60) / (1000)));
 
         return {
+            isNegative,
             days,
             hours,
             minutes,
