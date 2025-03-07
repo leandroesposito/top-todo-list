@@ -14,6 +14,9 @@ export default class ProjectsManager {
     }
 
     saveProject(project) {
+        if (!project) {
+            project = this.currenProject;
+        };
         ProjectsDatabaseManager.saveProject(this.user, project)
     }
 
