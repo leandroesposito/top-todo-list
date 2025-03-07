@@ -3,8 +3,8 @@ import Task from "./Task.js";
 export default class Project {
     #tasks = [];
 
-    constructor(title, description) {
-        this.id = Date.now().toString(36);
+    constructor(title, description, id) {
+        this.id = id ?? Date.now().toString(36);
         this.title = title;
         this.description = description;
     }
@@ -23,6 +23,7 @@ export default class Project {
 
     toJSON() {
         return {
+            id: this.id,
             title: this.title,
             description: this.description,
             tasks: this.#tasks
@@ -32,7 +33,7 @@ export default class Project {
     static fromJSON(json) {
         const data = typeof json === "string" ? JSON.parse(json) : json;
 
-        const project = new Project(data.id, data.title, data.description);
+        const project = new Project(data.title, data.description, data.id);
 
         for (let i = 0; i < data.tasks.length; i++) {
             const task = data.tasks[i];
