@@ -13,7 +13,9 @@ export default class ProjectsDatabaseManager {
 
     static saveProject(user, project) {
         const userProjects = JSON.parse(localStorage.getItem(user)) ?? [];
-        userProjects.push(project.id);
+        if (!userProjects.includes(project.id)) {
+            userProjects.push(project.id);
+        }
         localStorage.setItem(user, JSON.stringify(userProjects));
 
         localStorage.setItem(project.id, JSON.stringify(project));
