@@ -5,7 +5,25 @@ import ProjectsManager from "./ProjectsManager.js";
 import Project from "./Project.js";
 
 const loadContent = (function () {
-    function setContent(creatorFunction) {
+    function listMyProjects() {
+        const myProjectsContainer = document.querySelector(".my-projects-container");
+
+        projectManager.projects.forEach((project, index) => {
+            const projectButton = document.createElement("button");
+            projectButton.classList.add("project-title");
+
+            const icon = document.createElement("span");
+            icon.classList.add("folder-icon", "icon");
+            projectButton.appendChild(icon);
+
+            const textNode = document.createTextNode(project.title);
+            projectButton.appendChild(textNode);
+
+            projectButton.addEventListener("click", () => { viewProject(index) });
+
+            myProjectsContainer.appendChild(projectButton);
+        });
+    }
         mainContainer.innerHTML = "";
         mainContainer.appendChild(creatorFunction());
     }
@@ -39,6 +57,7 @@ const loadContent = (function () {
     const mainContainer = document.querySelector(".main-container");
 
     const projectManager = new ProjectsManager(userName);
+    listMyProjects();
 
     const createProjectButton = document.querySelector(".sidebar .create-project");
     createProjectButton.addEventListener("click", loadProjectCreation);
