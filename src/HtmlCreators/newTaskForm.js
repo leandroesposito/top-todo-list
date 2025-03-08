@@ -22,7 +22,7 @@ function addSubtaskInput() {
     subtasksContainer.appendChild(input);
 }
 
-export default function createNewTaskForm() {
+export function createNewTaskForm() {
     const form = utils.createElement("form", "content");
 
     const projectTitleDiv = utils.createMainTitle("New Task");
@@ -128,6 +128,40 @@ export default function createNewTaskForm() {
     const createTaskButton = utils.createAddButton("Create Task", "create-task");
     buttonContainer.appendChild(createTaskButton);
     form.appendChild(buttonContainer);
+
+    return form;
+}
+
+export function createEditTaskForm(task) {
+    form = createNewTaskForm();
+
+    form.querySelector("#task-title").value = task.title;
+    form.querySelector("#task-description").value = task.description;
+    form.querySelector("#task-due-date").value = task.dueDate.toISOString().replace("Z", "").slice(0, -4);
+
+    const MILLISECONDS_PER_MINUTE = 60 * 1000;
+    const TIMEZONE_OFFSET_MILLISECONDS = new Date().getTimezoneOffset() * MILLISECONDS_PER_MINUTE;
+    const offsetDate = new Date(task.dueDate.getTime() - TIMEZONE_OFFSET_MILLISECONDS);
+    form.querySelector("#task-due-date").value = offsetDate.toISOString().replace("Z", "").slice(0, -4);
+
+    form.querySelector("#task-priority").value = task.priority;
+    form.querySelector("#task-notes").value = task.notes;
+
+    form.querySelector(".subtasks").innerHTML = "";
+    task.subtasks.forEach((subtask) => {
+        const subtaskDiv = createSubtaskDiv();
+        const subtaskInput = subtaskDiv.querySelector("input");
+        subtaskInput.value = subtask.description;
+        form.querySelector(".subtasks").appendChild(subtaskDiv);
+    });
+
+    const saveButton = form.querySelector(".create-task");
+    saveButton.innerHTML = "";
+    const saveIcon = utils.createElement("div", "save-icon", "icon");
+    saveButton.appendChild(saveIcon);
+    const textNode = document.createTextNode("Save Task");
+    saveButton.appendChild(textNode);
+    saveButton.classList.add("save-task");
 
     return form;
 }
