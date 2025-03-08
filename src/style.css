@@ -328,10 +328,10 @@ form label div {
 
 .x-icon {
     display: inline-block;
-    width: 1.6rem;
-    height: 1.5rem;
-    background: url("./icons/delete-x.svg");
-    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    background: url("./icons/delete-x.svg") no-repeat center;
+    background-size: 1.5rem 1.5rem;
     border-radius: .5rem;
     cursor: pointer;
 }
