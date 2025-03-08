@@ -64,7 +64,7 @@ export default function createProjectViewer(project) {
     const content = utils.createElement("div", "content");
 
     const projectTitleDiv = utils.createMainTitle(project.title);
-    const editIcon = utils.createElement("div", "edit-project", "dots-icon", "icon");
+    const editIcon = utils.createElement("div", "edit-project", "pencil-icon", "icon");
     projectTitleDiv.appendChild(editIcon);
     content.appendChild(projectTitleDiv);
 
