@@ -18,8 +18,10 @@ function createTask(task) {
     const titleDiv = utils.createElement("div", "section-title");
     const textNode = document.createTextNode(task.title);
     const editIcon = utils.createElement("div", "edit-task", "pencil-icon", "icon");
+    const deleteIcon = utils.createElement("div", "delete-task", "x-icon", "red-icon", "icon");
     titleDiv.appendChild(textNode);
     titleDiv.appendChild(editIcon);
+    titleDiv.appendChild(deleteIcon);
     taskContainer.appendChild(titleDiv);
 
     const detailsDiv = utils.createElement("div", "task-status-details");
@@ -68,7 +70,9 @@ export default function createProjectViewer(project) {
 
     const projectTitleDiv = utils.createMainTitle(project.title);
     const editIcon = utils.createElement("div", "edit-project", "pencil-icon", "icon");
+    const deleteIcon = utils.createElement("div", "delete-project", "x-icon", "red-icon", "icon");
     projectTitleDiv.appendChild(editIcon);
+    projectTitleDiv.appendChild(deleteIcon);
     content.appendChild(projectTitleDiv);
 
     const projectDescriptionDiv = utils.createElement("div", "project-description");
