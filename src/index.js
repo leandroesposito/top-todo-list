@@ -9,6 +9,7 @@ import Task from "./Task.js";
 const loadContent = (function () {
     function listMyProjects() {
         const myProjectsContainer = document.querySelector(".my-projects-container");
+        myProjectsContainer.innerHTML = "";
 
         projectManager.projects.forEach((project, index) => {
             const projectButton = document.createElement("button");
