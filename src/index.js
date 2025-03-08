@@ -179,6 +179,7 @@ const loadContent = (function () {
 
     const projectManager = new ProjectsManager(userName);
     listMyProjects();
+    viewCurrentProject();
 
     const createProjectButton = document.querySelector(".sidebar .create-project");
     createProjectButton.addEventListener("click", loadProjectCreation);
