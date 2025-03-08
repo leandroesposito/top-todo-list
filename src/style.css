@@ -273,7 +273,9 @@ button.project-title:hover,
 }
 
 .main-title:hover .pencil-icon,
+.main-title:hover .x-icon,
 .section-title:hover .pencil-icon,
+.section-title:hover .x-icon,
 .subtask:hover .x-icon {
     visibility: visible;
 }
