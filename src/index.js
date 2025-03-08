@@ -1,6 +1,6 @@
 import "./style.css";
-import createNewProjectForm from "./HtmlCreators/newProjectForm.js";
-import createNewTaskForm from "./HtmlCreators/newTaskForm.js";
+import { createNewProjectForm, createEditProjectForm } from "./HtmlCreators/newProjectForm.js";
+import { createNewTaskForm, createEditTaskForm } from "./HtmlCreators/newTaskForm.js";
 import createProjectViewer from "./HtmlCreators/projectViewer.js";
 import ProjectsManager from "./ProjectsManager.js";
 import Project from "./Project.js";
@@ -36,6 +36,14 @@ const loadContent = (function () {
 
         const createTaskButton = document.querySelector(".create-task");
         createTaskButton.addEventListener("click", loadTaskCreation);
+
+        const editProjectButton = document.querySelector(".edit-project");
+        editProjectButton.addEventListener("click", loadProjectEdition);
+
+        const editTasksButtons = document.querySelectorAll(".edit-task");
+        editTasksButtons.forEach((button, index) =>
+            button.addEventListener("click", () => loadTaskEdition(index))
+        );
     }
 
     function viewCurrentProject() {
@@ -72,6 +80,67 @@ const loadContent = (function () {
         projectManager.addTask(task);
 
         viewCurrentProject();
+    }
+
+    function loadTaskEdition(taskIndex) {
+        setContent(createEditTaskForm, projectManager.currenProject.tasks[taskIndex]);
+
+        const saveTaskButton = document.querySelector("form .save-task");
+        saveTaskButton.addEventListener("click", handleEditTaskForm);
+        saveTaskButton.dataset.taskIndex = taskIndex;
+    }
+
+    function handleEditTaskForm(event) {
+        event.preventDefault();
+
+        const form = document.querySelector("form");
+        const formData = new FormData(form);
+
+        const taskTitle = formData.get("task-title");
+        const taskDescription = formData.get("task-description");
+        const taskPriority = formData.get("task-priority");
+        const taskDueDate = formData.get("task-due-date");
+        const taskNotes = formData.get("task-notes");
+
+        const task = new Task(taskTitle, taskDescription, taskDueDate, taskPriority, false, taskNotes);
+
+        const taskSubtasks = formData.getAll("subtask-description[]");
+
+        taskSubtasks.forEach((subtask) => {
+            task.addSubtask(subtask);
+        });
+
+        const saveTaskButton = document.querySelector("form .save-task");
+        const taskIndex = saveTaskButton.dataset.taskIndex;
+
+        projectManager.replaceTask(taskIndex, task);
+
+        viewCurrentProject();
+    }
+
+    function loadProjectEdition() {
+        setContent(createEditProjectForm, projectManager.currenProject);
+
+        const saveProjectButton = document.querySelector("form .save-project");
+        saveProjectButton.addEventListener("click", handleSaveProjectForm);
+    }
+
+    function handleSaveProjectForm(event) {
+        event.preventDefault();
+
+        const form = document.querySelector("form");
+        const formData = new FormData(form);
+
+        const projectTitle = formData.get("project-title");
+        const projectDescription = formData.get("project-description");
+
+        projectManager.currenProject.title = projectTitle;
+        projectManager.currenProject.description = projectDescription;
+
+        projectManager.saveProject();
+
+        viewCurrentProject();
+        listMyProjects();
     }
 
     function setContent(creatorFunction, params) {
