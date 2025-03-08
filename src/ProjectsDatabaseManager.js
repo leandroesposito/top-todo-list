@@ -25,6 +25,16 @@ export default class ProjectsDatabaseManager {
         return Project.fromJSON(localStorage.getItem(id));
     }
 
+    static removeProject(user, projectId) {
+        const userProjects = JSON.parse(localStorage.getItem(user)) ?? [];
+        const index = userProjects.indexOf(projectId);
+        if (index !== -1) {
+            userProjects.splice(index, 1);
+            localStorage.setItem(user, JSON.stringify(userProjects));
+            localStorage.removeItem(projectId);
+        }
+    }
+
     static getUserProjects(user) {
         const userProjects = JSON.parse(localStorage.getItem(user)) ?? [];
         const projects = [];

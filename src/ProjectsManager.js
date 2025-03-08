@@ -46,4 +46,10 @@ export default class ProjectsManager {
 
         return this.currenProject;
     }
+
+    removeProject(projectId) {
+        this.projects = this.projects.filter((project) => project.id !== projectId);
+        this.currenProject = this.projects[0] ?? null;
+        ProjectsDatabaseManager.removeProject(this.user, projectId);
+    }
 }
