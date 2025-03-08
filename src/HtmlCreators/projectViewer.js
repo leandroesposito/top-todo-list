@@ -37,6 +37,10 @@ function createTask(task) {
     detailsDiv.appendChild(dueDateDiv);
     taskContainer.appendChild(detailsDiv);
 
+    const descriptionDiv = utils.createElement("div", "task-description");
+    descriptionDiv.textContent = task.description;
+    taskContainer.appendChild(descriptionDiv);
+
     const subtasksDiv = utils.createElement("div", "task-subtasks");
     task.subtasks.forEach(subtask => {
         const subtaskDiv = createSubtask(subtask);
