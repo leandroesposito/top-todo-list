@@ -31,6 +31,16 @@ export default class ProjectsManager {
         this.saveProject(this.currenProject);
     }
 
+    removeTask(taskIndex) {
+        this.currenProject.removeTask(taskIndex);
+        this.saveProject(this.currenProject);
+    }
+
+    replaceTask(taskIndex, task) {
+        this.currenProject.replaceTask(taskIndex, task);
+        this.saveProject(this.currenProject);
+    }
+
     setCurrentProject(projectIndex) {
         this.currenProject = this.projects[projectIndex];
 

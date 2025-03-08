@@ -13,8 +13,16 @@ export default class Project {
         this.#tasks.push(task);
     }
 
+    replaceTask(index, task) {
+        this.#tasks.splice(index, 1, task);
+    }
+
     removeTask(index) {
         this.#tasks.splice(index, 1);
+    }
+
+    removeSubtask(taskIndex, subtaskIndex) {
+        this.#tasks[taskIndex].removeSubtask(subtaskIndex);
     }
 
     get tasks() {
