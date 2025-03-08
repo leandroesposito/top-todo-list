@@ -91,7 +91,6 @@ export function createNewTaskForm() {
     notesRow.appendChild(notesInput);
     form.appendChild(notesRow);
 
-    const subtasksContainer = utils.createElement("div", "subtasks");
     const subtasksRow = utils.createFormRow();
     subtasksRow.classList.add("subtasks");
     const [subtasksLabel, subtasksInput] = utils.createLabelInput({
