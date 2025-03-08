@@ -62,6 +62,9 @@ function createTask(task) {
 
 export default function createProjectViewer(project) {
     const content = utils.createElement("div", "content");
+    if (!project) {
+        return content;
+    }
 
     const projectTitleDiv = utils.createMainTitle(project.title);
     const editIcon = utils.createElement("div", "edit-project", "pencil-icon", "icon");
