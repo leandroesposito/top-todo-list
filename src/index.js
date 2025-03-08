@@ -45,10 +45,39 @@ const loadContent = (function () {
         const editProjectButton = document.querySelector(".edit-project");
         editProjectButton.addEventListener("click", loadProjectEdition);
 
+        const deleteProjectButton = document.querySelector(".delete-project");
+        deleteProjectButton.addEventListener("click", handleDeleteProject);
+
         const editTasksButtons = document.querySelectorAll(".edit-task");
         editTasksButtons.forEach((button, index) =>
             button.addEventListener("click", () => loadTaskEdition(index))
         );
+
+        const deleteTasksButtons = document.querySelectorAll(".delete-task");
+        deleteTasksButtons.forEach((button, index) =>
+            button.addEventListener("click", () => handleDeleteTask(index))
+        );
+    }
+
+    function handleDeleteTask(taskIndex) {
+        const response = confirm("Are you sure you want to DELETE this task?");
+        if (!response) {
+            return;
+        }
+
+        projectManager.removeTask(taskIndex);
+        viewCurrentProject();
+    }
+
+    function handleDeleteProject() {
+        const response = confirm("Are you sure you want to DELETE this project?");
+        if (!response) {
+            return;
+        }
+
+        projectManager.removeProject(projectManager.currenProject.id);
+        listMyProjects();
+        viewProject(0);
     }
 
     function viewCurrentProject() {
