@@ -93,6 +93,7 @@ export default function createNewTaskForm() {
 
     const subtasksContainer = utils.createElement("div", "subtasks");
     const subtasksRow = utils.createFormRow();
+    subtasksRow.classList.add("subtasks");
     const [subtasksLabel, subtasksInput] = utils.createLabelInput({
         label: "Subtasks",
         id: "subtask-description",
