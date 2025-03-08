@@ -104,16 +104,22 @@ export default function createNewTaskForm() {
     const subtaskEmptyIndicator = utils.createElement("div");
     subtaskEmptyIndicator.textContent = "(empty subtasks will be ignored)";
     subtasksLabel.appendChild(subtaskEmptyIndicator);
-
     subtasksRow.appendChild(subtasksLabel);
-    subtasksRow.appendChild(subtasksInput);
-    subtasksContainer.appendChild(subtasksRow);
-    form.appendChild(subtasksContainer);
+
+    const subtask = utils.createElement("div", "subtask");
+    subtask.appendChild(subtasksInput);
+    const deleteIcon = utils.createElement("div", "delete-subtask", "x-icon", "icon", "red-icon");
+    deleteIcon.addEventListener("click", () => subtask.remove());
+    subtask.appendChild(deleteIcon);
+
+    subtasksRow.appendChild(subtask);
+
+    form.appendChild(subtasksRow);
 
     const buttonContainer = utils.createElement("div", "button-container");
     const createSubtaskButton = utils.createAddButton("Create Subtask", "create-subtask");
     createSubtaskButton.type = "button";
-    createSubtaskButton.addEventListener("click", createSubtask);
+    createSubtaskButton.addEventListener("click", addSubtaskInput);
     buttonContainer.appendChild(createSubtaskButton);
 
 
