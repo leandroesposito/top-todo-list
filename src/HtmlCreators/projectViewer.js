@@ -17,7 +17,7 @@ function createTask(task) {
     const taskContainer = utils.createElement("div", "task");
     const titleDiv = utils.createElement("div", "section-title");
     const textNode = document.createTextNode(task.title);
-    const editIcon = utils.createElement("div", "edit-task", "dots-icon", "icon");
+    const editIcon = utils.createElement("div", "edit-task", "pencil-icon", "icon");
     titleDiv.appendChild(textNode);
     titleDiv.appendChild(editIcon);
     taskContainer.appendChild(titleDiv);
