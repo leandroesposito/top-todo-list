@@ -1,6 +1,6 @@
 import * as utils from "./utils.js"
 
-export default function createNewProjectForm() {
+export function createNewProjectForm() {
     const form = utils.createElement("form", "content");
 
     const projectTitleDiv = utils.createMainTitle("New Project");
@@ -32,6 +32,19 @@ export default function createNewProjectForm() {
     const createButton = utils.createAddButton("Create Project", "create-project");
     buttonContainer.appendChild(createButton);
     form.appendChild(buttonContainer);
+
+    return form;
+}
+
+export function createEditProjectForm(project) {
+    const form = createNewProjectForm();
+
+    form.querySelector("#project-title").value = project.title;
+    form.querySelector("#project-description").value = project.description;
+
+    const saveButton = form.querySelector(".create-project");
+    saveButton.textContent = "Save Project";
+    saveButton.classList.add("save-project");
 
     return form;
 }
