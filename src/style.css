@@ -266,6 +266,17 @@ button.project-title:hover,
     cursor: pointer;
 }
 
+.pencil-icon,
+.x-icon {
+    visibility: hidden;
+}
+
+.main-title:hover .pencil-icon,
+.section-title:hover .pencil-icon,
+.subtask:hover .x-icon {
+    visibility: visible;
+}
+
 .task-description {
     font-weight: 600;
     color: var(--font-color-light)
