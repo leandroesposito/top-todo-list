@@ -1,11 +1,24 @@
 import * as utils from "./utils.js"
 
-function createSubtask() {
-    const subtasksContainer = document.querySelector(".subtasks .form-row");
+function createSubtaskDiv() {
+    const subtask = utils.createElement("div", "subtask");
+
     const input = document.createElement("input");
     input.type = "text";
     input.id = "subtask-description";
     input.name = "subtask-description[]";
+
+    subtask.appendChild(input);
+    const deleteIcon = utils.createElement("div", "delete-subtask", "x-icon", "icon", "red-icon");
+    deleteIcon.addEventListener("click", () => subtask.remove());
+    subtask.appendChild(deleteIcon);
+
+    return subtask;
+}
+
+function addSubtaskInput() {
+    const subtasksContainer = document.querySelector(".form-row.subtasks");
+    const input = createSubtaskDiv();
     subtasksContainer.appendChild(input);
 }
 
