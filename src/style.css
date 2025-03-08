@@ -171,6 +171,7 @@ button.project-title:hover,
 
 .section-title {
     display: flex;
+    gap: 1rem;
     align-items: center;
     justify-content: space-between;
     border-bottom: 3px solid var(--line-color);
@@ -275,6 +276,10 @@ button.project-title:hover,
 .section-title:hover .pencil-icon,
 .subtask:hover .x-icon {
     visibility: visible;
+}
+
+.section-title .pencil-icon {
+    margin-left: auto;
 }
 
 .task-description {
