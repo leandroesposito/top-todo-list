@@ -33,6 +33,10 @@ const loadContent = (function () {
             projectManager.setCurrentProject(projectIndex);
         }
 
+        if (!projectManager.currenProject) {
+            return;
+        }
+
         setContent(createProjectViewer, projectManager.currenProject);
 
         const createTaskButton = document.querySelector(".create-task");
