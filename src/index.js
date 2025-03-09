@@ -58,20 +58,55 @@ const loadContent = (function () {
             button.addEventListener("click", () => handleDeleteTask(index))
         );
 
+        const completeTasksButtons = document.querySelectorAll(".complete-task");
+        completeTasksButtons.forEach((button, index) =>
+            button.addEventListener("click", () => handleCompleteTask(index))
+        );
+
         const subtasksContainer = document.querySelector(".task-subtasks");
-        subtasksContainer.addEventListener("click", (event) => {
-            const target = event.target;
-            if (target.classList.contains("task-subtasks")) {
+        subtasksContainer.addEventListener("click", handleSubtaskCheckClick);
+    }
+
+    function handleCompleteTask(taskIndex) {
+        const task = projectManager.currenProject.tasks[taskIndex];
+        if (task.completed) {
+            task.clearTodoCompletion();
+        }
+        else {
+            task.completeTodo();
+        }
+        projectManager.saveProject(projectManager.currenProject);
+        viewCurrentProject();
+    }
+
+    function handleSubtaskCheckClick(event) {
+        const target = event.target;
+        if (target.classList.contains("task-subtasks")) {
+            return;
+        }
+
+        const subtask = target.closest(".subtask");
+        const subtaskCheckbox = subtask.querySelector("input");
+        subtaskCheckbox.checked = !subtaskCheckbox.checked;
+        const taskIndex = subtask.dataset.taskIndex;
+        const subtaskIndex = subtask.dataset.subtaskIndex;
+        projectManager.setSubtaskStatus(taskIndex, subtaskIndex, subtaskCheckbox.checked);
+
+        checkAllSubtasksCompleted(taskIndex);
+    }
+
+    function checkAllSubtasksCompleted(taskIndex) {
+        if (projectManager.allSubtaskCompleted(taskIndex)) {
+            const response = confirm("All subtasks are completed, do you want to complete the task?");
+            if (!response) {
                 return;
             }
 
-            const subtask = target.closest(".subtask");
-            const subtaskCheckbox = subtask.querySelector("input");
-            subtaskCheckbox.checked = !subtaskCheckbox.checked;
-            const taskIndex = subtask.dataset.taskIndex;
-            const subtaskIndex = subtask.dataset.subtaskIndex;
-            projectManager.setSubtaskStatus(taskIndex, subtaskIndex, subtaskCheckbox.checked);
-        });
+            const task = projectManager.currenProject.tasks[taskIndex];
+            task.completeTodo();
+            projectManager.saveProject(projectManager.currenProject);
+            viewCurrentProject();
+        }
     }
 
     function handleDeleteTask(taskIndex) {
