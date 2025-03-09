@@ -62,4 +62,8 @@ export default class ProjectsManager {
         this.currenProject = this.projects[0] ?? null;
         ProjectsDatabaseManager.removeProject(this.user, projectId);
     }
+
+    allSubtaskCompleted(taskIndex) {
+        return this.currenProject.tasks[taskIndex].subtasks.every((subtask) => subtask.completed);
+    }
 }
