@@ -22,6 +22,19 @@ function addSubtaskInput() {
     subtasksContainer.appendChild(input);
 }
 
+function fixISODate(date) {
+    const MILLISECONDS_PER_MINUTE = 60 * 1000;
+    const TIMEZONE_OFFSET_MILLISECONDS = new Date().getTimezoneOffset() * MILLISECONDS_PER_MINUTE;
+    return new Date(date.getTime() - TIMEZONE_OFFSET_MILLISECONDS);
+}
+
+function getFixedIsoDateString(date) {
+    return fixISODate(date)
+        .toISOString()
+        .replace("Z", "")
+        .slice(0, -7);
+}
+
 export function createNewTaskForm() {
     const form = utils.createElement("form", "content");
 
@@ -57,6 +70,7 @@ export function createNewTaskForm() {
         labelClassList: ["section-title"],
         type: "datetime-local",
     });
+    dueDateInput.value = getFixedIsoDateString(new Date());
     dueDateRow.appendChild(dueDateLabel);
     dueDateRow.appendChild(dueDateInput);
     form.appendChild(dueDateRow);
@@ -136,12 +150,8 @@ export function createEditTaskForm(task) {
 
     form.querySelector("#task-title").value = task.title;
     form.querySelector("#task-description").value = task.description;
-    form.querySelector("#task-due-date").value = task.dueDate.toISOString().replace("Z", "").slice(0, -4);
 
-    const MILLISECONDS_PER_MINUTE = 60 * 1000;
-    const TIMEZONE_OFFSET_MILLISECONDS = new Date().getTimezoneOffset() * MILLISECONDS_PER_MINUTE;
-    const offsetDate = new Date(task.dueDate.getTime() - TIMEZONE_OFFSET_MILLISECONDS);
-    form.querySelector("#task-due-date").value = offsetDate.toISOString().replace("Z", "").slice(0, -4);
+    form.querySelector("#task-due-date").value = getFixedIsoDateString(task.dueDate);
 
     form.querySelector("#task-priority").value = task.priority;
     form.querySelector("#task-notes").value = task.notes;
