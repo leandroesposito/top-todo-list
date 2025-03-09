@@ -35,7 +35,7 @@ function createTask(task, taskIndex) {
 
     const dueDateDiv = utils.createElement("div", "task-due-date");
     const remainingTime = task.remainingTime;
-    dueDateDiv.textContent = `⏳ ${remainingTime.isNegative ? "-" : ""} ${remainingTime.days} days ${remainingTime.hours} hours ${remainingTime.minutes} minutes ${remainingTime.seconds} seconds remaining`;
+    dueDateDiv.textContent = `⏳ ${remainingTime.isNegative ? "-" : ""} ${remainingTime.days} days ${remainingTime.hours} hours ${remainingTime.minutes} minutes remaining`;
     detailsDiv.appendChild(dueDateDiv);
     taskContainer.appendChild(detailsDiv);
 
