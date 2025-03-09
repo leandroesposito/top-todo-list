@@ -59,6 +59,21 @@ const loadContent = (function () {
         deleteTasksButtons.forEach((button, index) =>
             button.addEventListener("click", () => handleDeleteTask(index))
         );
+
+        const subtasksContainer = document.querySelector(".task-subtasks");
+        subtasksContainer.addEventListener("click", (event) => {
+            const target = event.target;
+            if (target.classList.contains("task-subtasks")) {
+                return;
+            }
+
+            const subtask = target.closest(".subtask");
+            const subtaskCheckbox = subtask.querySelector("input");
+            subtaskCheckbox.checked = !subtaskCheckbox.checked;
+            const taskIndex = subtask.dataset.taskIndex;
+            const subtaskIndex = subtask.dataset.subtaskIndex;
+            projectManager.setSubtaskStatus(taskIndex, subtaskIndex, subtaskCheckbox.checked);
+        });
     }
 
     function handleDeleteTask(taskIndex) {
