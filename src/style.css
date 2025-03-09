@@ -101,6 +101,7 @@ button.project-title {
 }
 
 button.project-title:hover,
+.subtask:hover,
 .add-button:hover,
 .dots-icon:hover,
 .pencil-icon:hover {
@@ -167,6 +168,7 @@ button.project-title:hover,
     display: flex;
     gap: .5rem;
     align-items: center;
+    cursor: pointer;
 }
 
 .section-title {
