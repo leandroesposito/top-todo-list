@@ -65,6 +65,10 @@ function createTask(task) {
 export default function createProjectViewer(project) {
     const content = utils.createElement("div", "content");
     if (!project) {
+        const noProjectDiv = utils.createElement("div", "no-project-selected");
+        const textNode = document.createTextNode("No project selected. Click on a project to view it here or click on the 'Create Project' button to create a new project.");
+        noProjectDiv.appendChild(textNode);
+        content.appendChild(noProjectDiv);
         return content;
     }
 
@@ -83,6 +87,13 @@ export default function createProjectViewer(project) {
     project.tasks.forEach(task => {
         tasksContainer.appendChild(createTask(task));
     });
+
+    if (project.tasks.length === 0) {
+        const noTasksDiv = utils.createElement("div", "no-tasks");
+        const textNode = document.createTextNode("No tasks found. Click on the 'Create Task' button to create a new task.");
+        noTasksDiv.appendChild(textNode);
+        tasksContainer.appendChild(noTasksDiv);
+    }
     content.appendChild(tasksContainer);
 
     const buttonDiv = utils.createElement("div", "buttons");
