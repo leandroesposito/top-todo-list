@@ -47,6 +47,16 @@ export default class ProjectsManager {
         return this.currenProject;
     }
 
+    setSubtaskStatus(taskIndex, subtaskIndex, status) {
+        if (status) {
+            this.currenProject.tasks[taskIndex].completeSubtask(subtaskIndex);
+        }
+        else {
+            this.currenProject.tasks[taskIndex].clearSubtaskCompletion(subtaskIndex);
+        }
+        this.saveProject(this.currenProject);
+    }
+
     removeProject(projectId) {
         this.projects = this.projects.filter((project) => project.id !== projectId);
         this.currenProject = this.projects[0] ?? null;
