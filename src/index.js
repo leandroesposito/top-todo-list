@@ -33,6 +33,8 @@ const loadContent = (function () {
             projectManager.setCurrentProject(projectIndex);
         }
 
+        setContent(createProjectViewer, projectManager.currenProject);
+
         if (!projectManager.currenProject) {
             return;
         }
