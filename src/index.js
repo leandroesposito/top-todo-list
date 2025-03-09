@@ -39,8 +39,6 @@ const loadContent = (function () {
             return;
         }
 
-        setContent(createProjectViewer, projectManager.currenProject);
-
         const createTaskButton = document.querySelector(".create-task");
         createTaskButton.addEventListener("click", loadTaskCreation);
 
