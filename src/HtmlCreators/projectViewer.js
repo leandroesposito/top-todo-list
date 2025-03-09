@@ -13,7 +13,7 @@ function createSubtask(subtask) {
     return subtaskDiv;
 }
 
-function createTask(task) {
+function createTask(task, taskIndex) {
     const taskContainer = utils.createElement("div", "task");
     const titleDiv = utils.createElement("div", "section-title");
     const textNode = document.createTextNode(task.title);
@@ -44,8 +44,10 @@ function createTask(task) {
     taskContainer.appendChild(descriptionDiv);
 
     const subtasksDiv = utils.createElement("div", "task-subtasks");
-    task.subtasks.forEach(subtask => {
+    task.subtasks.forEach((subtask, subTaskIndex) => {
         const subtaskDiv = createSubtask(subtask);
+        subtaskDiv.dataset.subtaskIndex = subTaskIndex;
+        subtaskDiv.dataset.taskIndex = taskIndex;
         subtasksDiv.appendChild(subtaskDiv);
     });
     taskContainer.appendChild(subtasksDiv);
@@ -84,8 +86,8 @@ export default function createProjectViewer(project) {
     content.appendChild(projectDescriptionDiv);
 
     const tasksContainer = utils.createElement("div", "tasks");
-    project.tasks.forEach(task => {
-        tasksContainer.appendChild(createTask(task));
+    project.tasks.forEach((task, index) => {
+        tasksContainer.appendChild(createTask(task, index));
     });
 
     if (project.tasks.length === 0) {
