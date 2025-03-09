@@ -19,9 +19,14 @@ function createTask(task, taskIndex) {
     const textNode = document.createTextNode(task.title);
     const editIcon = utils.createElement("div", "edit-task", "pencil-icon", "icon");
     const deleteIcon = utils.createElement("div", "delete-task", "x-icon", "red-icon", "icon");
+    const completeIcon = utils.createElement("div", "complete-task", "check-icon", "green-icon", "icon");
+    if (task.completed) {
+        completeIcon.classList.add("grey-icon");
+    }
     titleDiv.appendChild(textNode);
     titleDiv.appendChild(editIcon);
     titleDiv.appendChild(deleteIcon);
+    titleDiv.appendChild(completeIcon);
     taskContainer.appendChild(titleDiv);
 
     const detailsDiv = utils.createElement("div", "task-status-details");
