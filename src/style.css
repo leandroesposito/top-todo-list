@@ -3,6 +3,8 @@
     --accent-color: #1167c6;
     --accent-color-light: rgb(160, 206, 255);
     --accent-color-light-red: rgb(255, 174, 160);
+    --accent-color-light-green: rgb(160, 255, 165);
+    --accent-color-light-grey: rgb(196, 196, 196);
     --font-color: rgb(46, 46, 46);
     --font-color-light: rgb(70, 70, 70);
     --line-color: rgb(223, 223, 223);
@@ -206,31 +208,31 @@ button.project-title:hover,
 }
 
 .task-priority[data-priority="1"]::before {
-    content: "Low";
+    content: "Priority: Low";
     background-color: #d4edda;
     color: #155724;
 }
 
 .task-priority[data-priority="2"]::before {
-    content: "Medium";
+    content: "Priority: Medium";
     background-color: #fff3cd;
     color: #856404;
 }
 
 .task-priority[data-priority="3"]::before {
-    content: "High";
+    content: "Priority: High";
     background-color: #ffe5cc;
     color: #cc5500;
 }
 
 .task-priority[data-priority="4"]::before {
-    content: "Very High";
+    content: "Priority: Very High";
     background-color: #f8d7da;
     color: #721c24;
 }
 
 .task-priority[data-priority="5"]::before {
-    content: "Critic";
+    content: "Priority: Critic";
     background-color: #dc3545;
     color: #ffffff;
 }
@@ -240,11 +242,11 @@ button.project-title:hover,
 }
 
 .task-complete-status[data-complete-status="pending"]::before {
-    content: "Pending";
+    content: "Status: Pending";
 }
 
 .task-complete-status[data-complete-status="completed"]::before {
-    content: "Completed";
+    content: "Status: Completed";
     background-color: var(--accent-color-light);
     border: none;
 }
@@ -262,15 +264,59 @@ button.project-title:hover,
 }
 
 .pencil-icon {
-    width: 2rem;
+    position: relative;
+    font-size: 1rem;
+    flex: 0 0 11ch;
     height: 2rem;
-    background: url("./icons/edit-square.svg") no-repeat center;
+    background: url("./icons/edit-square.svg") no-repeat .5rem;
     background-size: 1.5rem 1.5rem;
     cursor: pointer;
+    font-size: 1rem;
+}
+
+.pencil-icon:after {
+    content: "Edit";
+    position: absolute;
+    top: .3rem;
+    left: 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--font-color-light);
+}
+
+.check-icon {
+    position: relative;
+    font-size: 1rem;
+    flex: 0 0 13ch;
+    height: 2rem;
+    background: url("./icons/check-square.svg") no-repeat .5rem;
+    background-size: 1.5rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: .5rem;
+}
+
+.check-icon:after {
+    content: "Complete";
+    position: absolute;
+    top: .3rem;
+    left: 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--font-color-light);
+}
+
+.green-icon:hover {
+    background-color: var(--accent-color-light-green);
+}
+
+.grey-icon:hover {
+    background-color: var(--accent-color-light-grey);
 }
 
 .pencil-icon,
-.x-icon {
+.x-icon,
+.check-icon {
     visibility: hidden;
 }
 
@@ -278,6 +324,7 @@ button.project-title:hover,
 .main-title:hover .x-icon,
 .section-title:hover .pencil-icon,
 .section-title:hover .x-icon,
+.section-title:hover .check-icon,
 .subtask:hover .x-icon {
     visibility: visible;
 }
@@ -329,13 +376,28 @@ form label div {
 }
 
 .x-icon {
+    position: relative;
     display: inline-block;
-    width: 2rem;
+    font-size: 1rem;
+    flex: 0 0 11ch;
     height: 2rem;
-    background: url("./icons/delete-x.svg") no-repeat center;
+    background: url("./icons/delete-x.svg") no-repeat .5rem;
     background-size: 1.5rem 1.5rem;
     border-radius: .5rem;
     cursor: pointer;
+}
+
+.x-icon:after {
+    content: "Delete";
+    position: absolute;
+    top: .3rem;
+    left: 2.5rem;
+    font-weight: 600;
+    color: var(--font-color-light);
+}
+
+.icon:last-child:not(:first-child) {
+    margin-right: 1rem;
 }
 
 .red-icon:hover {
