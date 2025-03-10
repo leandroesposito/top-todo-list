@@ -48,6 +48,7 @@ export function createNewTaskForm() {
         labelClassList: ["section-title"],
         type: "text",
     });
+    titleInput.required = true;
     titleRow.appendChild(titleLabel);
     titleRow.appendChild(titleInput);
     form.appendChild(titleRow);
@@ -71,6 +72,7 @@ export function createNewTaskForm() {
         type: "datetime-local",
     });
     dueDateInput.value = getFixedIsoDateString(new Date());
+    dueDateInput.required = true;
     dueDateRow.appendChild(dueDateLabel);
     dueDateRow.appendChild(dueDateInput);
     form.appendChild(dueDateRow);
