@@ -7,6 +7,19 @@ import Project from "./Project.js";
 import Task from "./Task.js";
 
 const loadContent = (function () {
+    const userName = "User 1";
+    const userNameContainer = document.querySelector(".user-name");
+    userNameContainer.textContent = userName;
+
+    const mainContainer = document.querySelector(".main-container");
+    const projectManager = new ProjectsManager(userName);
+
+    const createProjectButton = document.querySelector(".sidebar .create-project");
+    createProjectButton.addEventListener("click", loadProjectCreation);
+
+    listMyProjects();
+    viewCurrentProject();
+
     function listMyProjects() {
         const myProjectsContainer = document.querySelector(".my-projects-container");
         myProjectsContainer.innerHTML = "";
@@ -67,69 +80,6 @@ const loadContent = (function () {
         subtasksContainers.forEach((container) => {
             container.addEventListener("click", handleSubtaskCheckClick);
         });
-    }
-
-    function handleCompleteTask(taskIndex) {
-        const task = projectManager.currenProject.tasks[taskIndex];
-        if (task.completed) {
-            task.clearTodoCompletion();
-        }
-        else {
-            task.completeTodo();
-        }
-        projectManager.saveProject(projectManager.currenProject);
-        viewCurrentProject();
-    }
-
-    function handleSubtaskCheckClick(event) {
-        const target = event.target;
-        if (target.classList.contains("task-subtasks")) {
-            return;
-        }
-
-        const subtask = target.closest(".subtask");
-        const subtaskCheckbox = subtask.querySelector("input");
-        subtaskCheckbox.checked = !subtaskCheckbox.checked;
-        const taskIndex = subtask.dataset.taskIndex;
-        const subtaskIndex = subtask.dataset.subtaskIndex;
-        projectManager.setSubtaskStatus(taskIndex, subtaskIndex, subtaskCheckbox.checked);
-
-        checkAllSubtasksCompleted(taskIndex);
-    }
-
-    function checkAllSubtasksCompleted(taskIndex) {
-        if (projectManager.allSubtaskCompleted(taskIndex)) {
-            const response = confirm("All subtasks are completed, do you want to complete the task?");
-            if (!response) {
-                return;
-            }
-
-            const task = projectManager.currenProject.tasks[taskIndex];
-            task.completeTodo();
-            projectManager.saveProject(projectManager.currenProject);
-            viewCurrentProject();
-        }
-    }
-
-    function handleDeleteTask(taskIndex) {
-        const response = confirm("Are you sure you want to DELETE this task?");
-        if (!response) {
-            return;
-        }
-
-        projectManager.removeTask(taskIndex);
-        viewCurrentProject();
-    }
-
-    function handleDeleteProject() {
-        const response = confirm("Are you sure you want to DELETE this project?");
-        if (!response) {
-            return;
-        }
-
-        projectManager.removeProject(projectManager.currenProject.id);
-        listMyProjects();
-        viewProject(0);
     }
 
     function viewCurrentProject() {
@@ -206,6 +156,81 @@ const loadContent = (function () {
         viewCurrentProject();
     }
 
+    function handleCompleteTask(taskIndex) {
+        const task = projectManager.currenProject.tasks[taskIndex];
+        if (task.completed) {
+            task.clearTodoCompletion();
+        }
+        else {
+            task.completeTodo();
+        }
+        projectManager.saveProject(projectManager.currenProject);
+        viewCurrentProject();
+    }
+
+    function handleDeleteTask(taskIndex) {
+        const response = confirm("Are you sure you want to DELETE this task?");
+        if (!response) {
+            return;
+        }
+
+        projectManager.removeTask(taskIndex);
+        viewCurrentProject();
+    }
+
+    function handleSubtaskCheckClick(event) {
+        const target = event.target;
+        if (target.classList.contains("task-subtasks")) {
+            return;
+        }
+
+        const subtask = target.closest(".subtask");
+        const subtaskCheckbox = subtask.querySelector("input");
+        subtaskCheckbox.checked = !subtaskCheckbox.checked;
+        const taskIndex = subtask.dataset.taskIndex;
+        const subtaskIndex = subtask.dataset.subtaskIndex;
+        projectManager.setSubtaskStatus(taskIndex, subtaskIndex, subtaskCheckbox.checked);
+
+        checkAllSubtasksCompleted(taskIndex);
+    }
+
+    function checkAllSubtasksCompleted(taskIndex) {
+        if (projectManager.allSubtaskCompleted(taskIndex)) {
+            const response = confirm("All subtasks are completed, do you want to complete the task?");
+            if (!response) {
+                return;
+            }
+
+            const task = projectManager.currenProject.tasks[taskIndex];
+            task.completeTodo();
+            projectManager.saveProject(projectManager.currenProject);
+            viewCurrentProject();
+        }
+    }
+
+    function loadProjectCreation() {
+        setContent(createNewProjectForm);
+
+        const createProjectForm = document.querySelector("form");
+        createProjectForm.addEventListener("submit", handleCreateProjectForm);
+    }
+
+    function handleCreateProjectForm(event) {
+        event.preventDefault();
+
+        const form = document.querySelector("form");
+        const formData = new FormData(form);
+
+        const projectTitle = formData.get("project-title");
+        const projectDescription = formData.get("project-description");
+
+        const project = new Project(projectTitle, projectDescription);
+        projectManager.addProject(project);
+
+        listMyProjects();
+        viewCurrentProject();
+    }
+
     function loadProjectEdition() {
         setContent(createEditProjectForm, projectManager.currenProject);
 
@@ -231,6 +256,17 @@ const loadContent = (function () {
         listMyProjects();
     }
 
+    function handleDeleteProject() {
+        const response = confirm("Are you sure you want to DELETE this project?");
+        if (!response) {
+            return;
+        }
+
+        projectManager.removeProject(projectManager.currenProject.id);
+        listMyProjects();
+        viewProject(0);
+    }
+
     function setContent(creatorFunction, params) {
         mainContainer.innerHTML = "";
         mainContainer.appendChild(creatorFunction(params));
@@ -239,43 +275,4 @@ const loadContent = (function () {
             window.scrollTo(0, 0);
         }
     }
-
-    function handleCreateProjectForm(event) {
-        event.preventDefault();
-
-        const form = document.querySelector("form");
-        const formData = new FormData(form);
-
-        const projectTitle = formData.get("project-title");
-        const projectDescription = formData.get("project-description");
-
-        const project = new Project(projectTitle, projectDescription);
-        projectManager.addProject(project);
-
-        listMyProjects();
-        viewCurrentProject();
-    }
-
-    function loadProjectCreation() {
-        setContent(createNewProjectForm);
-
-        const createProjectForm = document.querySelector("form");
-        createProjectForm.addEventListener("submit", handleCreateProjectForm);
-    }
-
-    const userName = "User 1";
-    const userNameContainer = document.querySelector(".user-name");
-    userNameContainer.textContent = userName;
-
-    const mainContainer = document.querySelector(".main-container");
-
-    const projectManager = new ProjectsManager(userName);
-    listMyProjects();
-    viewCurrentProject();
-
-    const createProjectButton = document.querySelector(".sidebar .create-project");
-    createProjectButton.addEventListener("click", loadProjectCreation);
 })();
-
-// loadContent(createNewProjectForm);
-// loadContent(createNewTaskForm);
