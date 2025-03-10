@@ -77,6 +77,7 @@ function createNewProjectForm() {
         labelClassList: ["section-title"],
         type: "text",
     });
+    titleInput.required = true;
     titleRow.appendChild(titleLabel);
     titleRow.appendChild(titleInput);
     form.appendChild(titleRow);
@@ -163,6 +164,7 @@ function createNewTaskForm() {
         labelClassList: ["section-title"],
         type: "text",
     });
+    titleInput.required = true;
     titleRow.appendChild(titleLabel);
     titleRow.appendChild(titleInput);
     form.appendChild(titleRow);
@@ -186,6 +188,7 @@ function createNewTaskForm() {
         type: "datetime-local",
     });
     dueDateInput.value = getFixedIsoDateString(new Date());
+    dueDateInput.required = true;
     dueDateRow.appendChild(dueDateLabel);
     dueDateRow.appendChild(dueDateInput);
     form.appendChild(dueDateRow);
@@ -743,6 +746,19 @@ class ProjectsManager {
 
 
 const loadContent = (function () {
+    const userName = "User 1";
+    const userNameContainer = document.querySelector(".user-name");
+    userNameContainer.textContent = userName;
+
+    const mainContainer = document.querySelector(".main-container");
+    const projectManager = new ProjectsManager(userName);
+
+    const createProjectButton = document.querySelector(".sidebar .create-project");
+    createProjectButton.addEventListener("click", loadProjectCreation);
+
+    listMyProjects();
+    viewCurrentProject();
+
     function listMyProjects() {
         const myProjectsContainer = document.querySelector(".my-projects-container");
         myProjectsContainer.innerHTML = "";
@@ -799,8 +815,84 @@ const loadContent = (function () {
             button.addEventListener("click", () => handleCompleteTask(index))
         );
 
-        const subtasksContainer = document.querySelector(".task-subtasks");
-        subtasksContainer.addEventListener("click", handleSubtaskCheckClick);
+        const subtasksContainers = document.querySelectorAll(".task-subtasks");
+        subtasksContainers.forEach((container) => {
+            container.addEventListener("click", handleSubtaskCheckClick);
+        });
+    }
+
+    function viewCurrentProject() {
+        viewProject();
+    }
+
+    function loadTaskCreation() {
+        setContent(createNewTaskForm);
+
+        const createTaskForm = document.querySelector("form");
+        createTaskForm.addEventListener("submit", handleCreateTaskForm);
+    }
+
+    function handleCreateTaskForm(event) {
+        event.preventDefault();
+
+        const form = document.querySelector("form");
+        const formData = new FormData(form);
+
+        const taskTitle = formData.get("task-title");
+        const taskDescription = formData.get("task-description");
+        const taskPriority = formData.get("task-priority");
+        const taskDueDate = formData.get("task-due-date");
+        const taskNotes = formData.get("task-notes");
+
+        const task = new Task(taskTitle, taskDescription, taskDueDate, taskPriority, false, taskNotes);
+
+        const taskSubtasks = formData.getAll("subtask-description[]");
+
+        taskSubtasks.forEach((subtask) => {
+            task.addSubtask(subtask);
+        });
+
+        projectManager.addTask(task);
+
+        viewCurrentProject();
+    }
+
+    function loadTaskEdition(taskIndex) {
+        setContent(createEditTaskForm, projectManager.currenProject.tasks[taskIndex]);
+
+        const saveTaskButton = document.querySelector("form .save-task");
+        saveTaskButton.dataset.taskIndex = taskIndex;
+
+        const saveTaskForm = document.querySelector("form");
+        saveTaskForm.addEventListener("submit", handleEditTaskForm);
+    }
+
+    function handleEditTaskForm(event) {
+        event.preventDefault();
+
+        const form = document.querySelector("form");
+        const formData = new FormData(form);
+
+        const taskTitle = formData.get("task-title");
+        const taskDescription = formData.get("task-description");
+        const taskPriority = formData.get("task-priority");
+        const taskDueDate = formData.get("task-due-date");
+        const taskNotes = formData.get("task-notes");
+
+        const task = new Task(taskTitle, taskDescription, taskDueDate, taskPriority, false, taskNotes);
+
+        const taskSubtasks = formData.getAll("subtask-description[]");
+
+        taskSubtasks.forEach((subtask) => {
+            task.addSubtask(subtask);
+        });
+
+        const saveTaskButton = document.querySelector("form .save-task");
+        const taskIndex = saveTaskButton.dataset.taskIndex;
+
+        projectManager.replaceTask(taskIndex, task);
+
+        viewCurrentProject();
     }
 
     function handleCompleteTask(taskIndex) {
@@ -812,6 +904,16 @@ const loadContent = (function () {
             task.completeTodo();
         }
         projectManager.saveProject(projectManager.currenProject);
+        viewCurrentProject();
+    }
+
+    function handleDeleteTask(taskIndex) {
+        const response = confirm("Are you sure you want to DELETE this task?");
+        if (!response) {
+            return;
+        }
+
+        projectManager.removeTask(taskIndex);
         viewCurrentProject();
     }
 
@@ -845,104 +947,34 @@ const loadContent = (function () {
         }
     }
 
-    function handleDeleteTask(taskIndex) {
-        const response = confirm("Are you sure you want to DELETE this task?");
-        if (!response) {
-            return;
-        }
+    function loadProjectCreation() {
+        setContent(createNewProjectForm);
 
-        projectManager.removeTask(taskIndex);
-        viewCurrentProject();
+        const createProjectForm = document.querySelector("form");
+        createProjectForm.addEventListener("submit", handleCreateProjectForm);
     }
 
-    function handleDeleteProject() {
-        const response = confirm("Are you sure you want to DELETE this project?");
-        if (!response) {
-            return;
-        }
+    function handleCreateProjectForm(event) {
+        event.preventDefault();
 
-        projectManager.removeProject(projectManager.currenProject.id);
+        const form = document.querySelector("form");
+        const formData = new FormData(form);
+
+        const projectTitle = formData.get("project-title");
+        const projectDescription = formData.get("project-description");
+
+        const project = new Project(projectTitle, projectDescription);
+        projectManager.addProject(project);
+
         listMyProjects();
-        viewProject(0);
-    }
-
-    function viewCurrentProject() {
-        viewProject();
-    }
-
-    function loadTaskCreation() {
-        setContent(createNewTaskForm);
-
-        const createTaskButton = document.querySelector("form .create-task");
-        createTaskButton.addEventListener("click", handleCreateTaskForm);
-    }
-
-    function handleCreateTaskForm(event) {
-        event.preventDefault();
-
-        const form = document.querySelector("form");
-        const formData = new FormData(form);
-
-        const taskTitle = formData.get("task-title");
-        const taskDescription = formData.get("task-description");
-        const taskPriority = formData.get("task-priority");
-        const taskDueDate = formData.get("task-due-date");
-        const taskNotes = formData.get("task-notes");
-
-        const task = new Task(taskTitle, taskDescription, taskDueDate, taskPriority, false, taskNotes);
-
-        const taskSubtasks = formData.getAll("subtask-description[]");
-
-        taskSubtasks.forEach((subtask) => {
-            task.addSubtask(subtask);
-        });
-
-        projectManager.addTask(task);
-
-        viewCurrentProject();
-    }
-
-    function loadTaskEdition(taskIndex) {
-        setContent(createEditTaskForm, projectManager.currenProject.tasks[taskIndex]);
-
-        const saveTaskButton = document.querySelector("form .save-task");
-        saveTaskButton.addEventListener("click", handleEditTaskForm);
-        saveTaskButton.dataset.taskIndex = taskIndex;
-    }
-
-    function handleEditTaskForm(event) {
-        event.preventDefault();
-
-        const form = document.querySelector("form");
-        const formData = new FormData(form);
-
-        const taskTitle = formData.get("task-title");
-        const taskDescription = formData.get("task-description");
-        const taskPriority = formData.get("task-priority");
-        const taskDueDate = formData.get("task-due-date");
-        const taskNotes = formData.get("task-notes");
-
-        const task = new Task(taskTitle, taskDescription, taskDueDate, taskPriority, false, taskNotes);
-
-        const taskSubtasks = formData.getAll("subtask-description[]");
-
-        taskSubtasks.forEach((subtask) => {
-            task.addSubtask(subtask);
-        });
-
-        const saveTaskButton = document.querySelector("form .save-task");
-        const taskIndex = saveTaskButton.dataset.taskIndex;
-
-        projectManager.replaceTask(taskIndex, task);
-
         viewCurrentProject();
     }
 
     function loadProjectEdition() {
         setContent(createEditProjectForm, projectManager.currenProject);
 
-        const saveProjectButton = document.querySelector("form .save-project");
-        saveProjectButton.addEventListener("click", handleSaveProjectForm);
+        const saveProjectForm = document.querySelector("form");
+        saveProjectForm.addEventListener("submit", handleSaveProjectForm);
     }
 
     function handleSaveProjectForm(event) {
@@ -963,50 +995,26 @@ const loadContent = (function () {
         listMyProjects();
     }
 
+    function handleDeleteProject() {
+        const response = confirm("Are you sure you want to DELETE this project?");
+        if (!response) {
+            return;
+        }
+
+        projectManager.removeProject(projectManager.currenProject.id);
+        listMyProjects();
+        viewProject(0);
+    }
+
     function setContent(creatorFunction, params) {
         mainContainer.innerHTML = "";
         mainContainer.appendChild(creatorFunction(params));
+
+        if (creatorFunction !== createProjectViewer) {
+            window.scrollTo(0, 0);
+        }
     }
-
-    function handleCreateProjectForm(event) {
-        event.preventDefault();
-
-        const form = document.querySelector("form");
-        const formData = new FormData(form);
-
-        const projectTitle = formData.get("project-title");
-        const projectDescription = formData.get("project-description");
-
-        const project = new Project(projectTitle, projectDescription);
-        projectManager.addProject(project);
-
-        listMyProjects();
-        viewCurrentProject();
-    }
-
-    function loadProjectCreation() {
-        setContent(createNewProjectForm);
-
-        const createProjectButton = document.querySelector("form .create-project");
-        createProjectButton.addEventListener("click", handleCreateProjectForm);
-    }
-
-    const userName = "User 1";
-    const userNameContainer = document.querySelector(".user-name");
-    userNameContainer.textContent = userName;
-
-    const mainContainer = document.querySelector(".main-container");
-
-    const projectManager = new ProjectsManager(userName);
-    listMyProjects();
-    viewCurrentProject();
-
-    const createProjectButton = document.querySelector(".sidebar .create-project");
-    createProjectButton.addEventListener("click", loadProjectCreation);
 })();
-
-// loadContent(createNewProjectForm);
-// loadContent(createNewTaskForm);
 /******/ })()
 ;
 //# sourceMappingURL=main.js.map
