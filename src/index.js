@@ -234,6 +234,10 @@ const loadContent = (function () {
     function setContent(creatorFunction, params) {
         mainContainer.innerHTML = "";
         mainContainer.appendChild(creatorFunction(params));
+
+        if (creatorFunction !== createProjectViewer) {
+            window.scrollTo(0, 0);
+        }
     }
 
     function handleCreateProjectForm(event) {
