@@ -139,8 +139,8 @@ const loadContent = (function () {
     function loadTaskCreation() {
         setContent(createNewTaskForm);
 
-        const createTaskButton = document.querySelector("form .create-task");
-        createTaskButton.addEventListener("click", handleCreateTaskForm);
+        const createTaskForm = document.querySelector("form");
+        createTaskForm.addEventListener("submit", handleCreateTaskForm);
     }
 
     function handleCreateTaskForm(event) {
@@ -172,8 +172,10 @@ const loadContent = (function () {
         setContent(createEditTaskForm, projectManager.currenProject.tasks[taskIndex]);
 
         const saveTaskButton = document.querySelector("form .save-task");
-        saveTaskButton.addEventListener("click", handleEditTaskForm);
         saveTaskButton.dataset.taskIndex = taskIndex;
+
+        const saveTaskForm = document.querySelector("form");
+        saveTaskForm.addEventListener("submit", handleEditTaskForm);
     }
 
     function handleEditTaskForm(event) {
@@ -207,8 +209,8 @@ const loadContent = (function () {
     function loadProjectEdition() {
         setContent(createEditProjectForm, projectManager.currenProject);
 
-        const saveProjectButton = document.querySelector("form .save-project");
-        saveProjectButton.addEventListener("click", handleSaveProjectForm);
+        const saveProjectForm = document.querySelector("form");
+        saveProjectForm.addEventListener("submit", handleSaveProjectForm);
     }
 
     function handleSaveProjectForm(event) {
@@ -253,8 +255,8 @@ const loadContent = (function () {
     function loadProjectCreation() {
         setContent(createNewProjectForm);
 
-        const createProjectButton = document.querySelector("form .create-project");
-        createProjectButton.addEventListener("click", handleCreateProjectForm);
+        const createProjectForm = document.querySelector("form");
+        createProjectForm.addEventListener("submit", handleCreateProjectForm);
     }
 
     const userName = "User 1";
