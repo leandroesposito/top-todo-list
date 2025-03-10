@@ -63,8 +63,10 @@ const loadContent = (function () {
             button.addEventListener("click", () => handleCompleteTask(index))
         );
 
-        const subtasksContainer = document.querySelector(".task-subtasks");
-        subtasksContainer.addEventListener("click", handleSubtaskCheckClick);
+        const subtasksContainers = document.querySelectorAll(".task-subtasks");
+        subtasksContainers.forEach((container) => {
+            container.addEventListener("click", handleSubtaskCheckClick);
+        });
     }
 
     function handleCompleteTask(taskIndex) {
