@@ -13,6 +13,7 @@ export function createNewProjectForm() {
         labelClassList: ["section-title"],
         type: "text",
     });
+    titleInput.required = true;
     titleRow.appendChild(titleLabel);
     titleRow.appendChild(titleInput);
     form.appendChild(titleRow);
