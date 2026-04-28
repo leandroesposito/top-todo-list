@@ -1,105 +1,137 @@
 :root {
-    --bg-color-dark: rgb(241, 241, 241);
-    --accent-color: #1167c6;
-    --accent-color-light: rgb(160, 206, 255);
-    --accent-color-light-red: rgb(255, 174, 160);
-    --accent-color-light-green: rgb(160, 255, 165);
-    --accent-color-light-grey: rgb(196, 196, 196);
-    --font-color: rgb(46, 46, 46);
-    --font-color-light: rgb(70, 70, 70);
-    --line-color: rgb(223, 223, 223);
-
+  --bg-color-dark: rgb(241, 241, 241);
+  --accent-color: #1167c6;
+  --accent-color-light: rgb(160, 206, 255);
+  --accent-color-light-red: rgb(255, 174, 160);
+  --accent-color-light-green: rgb(160, 255, 165);
+  --accent-color-light-grey: rgb(196, 196, 196);
+  --font-color: rgb(46, 46, 46);
+  --font-color-light: rgb(70, 70, 70);
+  --line-color: rgb(223, 223, 223);
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    min-height: 100vh;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: var(--bg-color-dark);
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  min-height: 100vh;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  background-color: var(--bg-color-dark);
 }
 
 button {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    cursor: pointer;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  cursor: pointer;
 }
 
 .body {
-    margin: 1rem;
-    min-height: 90vh;
-    background-color: white;
-    border-radius: 1rem;
-    display: grid;
-    grid-template-columns: 20rem 1fr;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-    color: var(--font-color)
+  margin: 1rem;
+  min-height: 90vh;
+  background-color: white;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  color: var(--font-color);
 }
 
 .sidebar {
-    background-color: var(--bg-color-dark);
-    padding: 2rem;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-    font-size: 1.2rem;
+  background-color: var(--bg-color-dark);
+  padding: 2rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  font-size: 1.2rem;
 }
 
 .user-name {
-    font-weight: 600;
-    font-size: 1.5rem;
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 .add-button {
-    background: none;
-    border: none;
-    color: var(--accent-color);
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    padding: .5rem;
-    display: flex;
-    align-items: baseline;
-    gap: .5rem;
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
 }
 
 .plus-icon {
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    background-color: var(--accent-color);
-    font-family: serif;
-    color: white;
-    padding: 5px;
-    text-align: center;
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  font-family: serif;
+  color: white;
+  padding: 5px;
+  text-align: center;
 }
 
 .my-projects-section {
-    font-weight: bold;
-    color: var(--font-color);
+  font-weight: bold;
+  color: var(--font-color);
 }
 
 .my-projects-container {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
 }
 
 button.project-title {
-    border: none;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    background: none;
-    text-align: left;
-    color: var(--font-color);
-    cursor: pointer;
-    border-radius: 1rem;
-    padding: .5rem;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
+  border: none;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: none;
+  text-align: left;
+  color: var(--font-color);
+  cursor: pointer;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 button.project-title:hover,
@@ -107,238 +139,221 @@ button.project-title:hover,
 .add-button:hover,
 .dots-icon:hover,
 .pencil-icon:hover {
-    background-color: var(--accent-color-light);
-    border-radius: .5rem;
+  background-color: var(--accent-color-light);
+  border-radius: 0.5rem;
 }
 
 .folder-icon {
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-    background: url("./icons/folder.svg");
-    background-size: cover;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: url("./icons/folder.svg");
+  background-size: cover;
 }
 
 .main-container {
-    padding: 4rem 2rem;
-    font-size: 1.1rem;
-    max-width: 80ch;
+  padding: 4rem 2rem;
+  font-size: 1.1rem;
+  max-width: 80ch;
 }
 
 .main-container .content {
-    display: grid;
-    gap: 2rem;
+  display: grid;
+  gap: 2rem;
 }
 
 .main-title {
-    font-size: 2rem;
-    font-weight: 600;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+  font-size: 2rem;
+  font-weight: 600;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .title-icon {
-    width: 2rem;
-    height: 2rem;
-    background: url("./icons/logo.svg");
-    background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  background: url("./icons/logo.svg");
+  background-size: cover;
 }
 
 .project-description {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--font-color-light);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--font-color-light);
 }
 
 .tasks {
-    display: grid;
-    gap: 7rem;
+  display: grid;
+  gap: 7rem;
 }
 
 .task {
-    display: grid;
-    gap: 1rem;
+  display: grid;
+  gap: 1rem;
 }
 
 .task-subtasks {
-    display: grid;
-    gap: .5rem;
+  display: grid;
+  gap: 0.5rem;
 }
 
 .subtask {
-    display: flex;
-    gap: .5rem;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
 }
 
 .section-title {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 3px solid var(--line-color);
-    color: var(--accent-color);
-    font-weight: bold;
-    font-size: 1.3rem;
-    height: 2rem;
-    padding-bottom: .5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--line-color);
+  color: var(--accent-color);
+  font-weight: bold;
+  font-size: 1.3rem;
+  height: 2rem;
+  padding-bottom: 0.5rem;
 }
 
 .task-status-details {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: left;
-    margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 2rem;
 }
 
-.task-status-details>div::before {
-    padding: .2rem 1rem;
-    border-radius: .5rem;
-    font-size: 1rem;
-    font-weight: 600;
+.task-status-details > div::before {
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .task-due-date {
-    font-size: 1rem;
-    color: var(--font-color-light);
-    font-weight: normal;
+  font-size: 1rem;
+  color: var(--font-color-light);
+  font-weight: normal;
 }
 
 .task-priority[data-priority="1"]::before {
-    content: "Priority: Low";
-    background-color: #d4edda;
-    color: #155724;
+  content: "Priority: Low";
+  background-color: #d4edda;
+  color: #155724;
 }
 
 .task-priority[data-priority="2"]::before {
-    content: "Priority: Medium";
-    background-color: #fff3cd;
-    color: #856404;
+  content: "Priority: Medium";
+  background-color: #fff3cd;
+  color: #856404;
 }
 
 .task-priority[data-priority="3"]::before {
-    content: "Priority: High";
-    background-color: #ffe5cc;
-    color: #cc5500;
+  content: "Priority: High";
+  background-color: #ffe5cc;
+  color: #cc5500;
 }
 
 .task-priority[data-priority="4"]::before {
-    content: "Priority: Very High";
-    background-color: #f8d7da;
-    color: #721c24;
+  content: "Priority: Very High";
+  background-color: #f8d7da;
+  color: #721c24;
 }
 
 .task-priority[data-priority="5"]::before {
-    content: "Priority: Critic";
-    background-color: #dc3545;
-    color: #ffffff;
+  content: "Priority: Critic";
+  background-color: #dc3545;
+  color: #ffffff;
 }
 
 .task-complete-status::before {
-    border: 2px solid var(--line-color);
+  border: 2px solid var(--line-color);
 }
 
 .task-complete-status[data-complete-status="pending"]::before {
-    content: "Status: Pending";
+  content: "Status: Pending";
 }
 
 .task-complete-status[data-complete-status="completed"]::before {
-    content: "Status: Completed";
-    background-color: var(--accent-color-light);
-    border: none;
+  content: "Status: Completed";
+  background-color: var(--accent-color-light);
+  border: none;
 }
 
 .notes-title {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .dots-icon {
-    width: 2rem;
-    height: 2rem;
-    background: url("./icons/dots-horizontal.svg");
-    background-size: cover;
-    cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  background: url("./icons/dots-horizontal.svg");
+  background-size: cover;
+  cursor: pointer;
 }
 
 .pencil-icon {
-    position: relative;
-    font-size: 1rem;
-    flex: 0 0 11ch;
-    height: 2rem;
-    background: url("./icons/edit-square.svg") no-repeat .5rem;
-    background-size: 1.5rem 1.5rem;
-    cursor: pointer;
-    font-size: 1rem;
+  position: relative;
+  font-size: 1rem;
+  flex: 0 0 11ch;
+  height: 2rem;
+  background: url("./icons/edit-square.svg") no-repeat 0.5rem;
+  background-size: 1.5rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .pencil-icon:after {
-    content: "Edit";
-    position: absolute;
-    top: .3rem;
-    left: 2.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--font-color-light);
+  content: "Edit";
+  position: absolute;
+  top: 0.3rem;
+  left: 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--font-color-light);
 }
 
 .check-icon {
-    position: relative;
-    font-size: 1rem;
-    flex: 0 0 13ch;
-    height: 2rem;
-    background: url("./icons/check-square.svg") no-repeat .5rem;
-    background-size: 1.5rem 1.5rem;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: .5rem;
+  position: relative;
+  font-size: 1rem;
+  flex: 0 0 13ch;
+  height: 2rem;
+  background: url("./icons/check-square.svg") no-repeat 0.5rem;
+  background-size: 1.5rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 0.5rem;
 }
 
 .check-icon:after {
-    content: "Complete";
-    position: absolute;
-    top: .3rem;
-    left: 2.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--font-color-light);
+  content: "Complete";
+  position: absolute;
+  top: 0.3rem;
+  left: 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--font-color-light);
 }
 
 .green-icon:hover {
-    background-color: var(--accent-color-light-green);
+  background-color: var(--accent-color-light-green);
 }
 
 .grey-icon:hover {
-    background-color: var(--accent-color-light-grey);
-}
-
-.pencil-icon,
-.x-icon,
-.check-icon {
-    visibility: hidden;
-}
-
-.main-title:hover .pencil-icon,
-.main-title:hover .x-icon,
-.section-title:hover .pencil-icon,
-.section-title:hover .x-icon,
-.section-title:hover .check-icon,
-.subtask:hover .x-icon {
-    visibility: visible;
+  background-color: var(--accent-color-light-grey);
 }
 
 .section-title .pencil-icon {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .task-description {
-    font-weight: 600;
-    color: var(--font-color-light)
+  font-weight: 600;
+  color: var(--font-color-light);
 }
-
-
 
 /*
 
@@ -349,69 +364,80 @@ FORM
 */
 
 .form-row {
-    display: grid;
-    gap: .5rem;
+  display: grid;
+  gap: 0.5rem;
 }
 
 form input,
 form textarea {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1rem;
-    color: var(--font-color);
-    border: 2px solid var(--font-color-light);
-    border-radius: .5rem;
-    width: 100%;
-    box-sizing: border-box;
-    padding: .5rem;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 1rem;
+  color: var(--font-color);
+  border: 2px solid var(--font-color-light);
+  border-radius: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
 }
 
 form input:invalid {
-    outline: 2px solid red;
+  outline: 2px solid red;
 }
 
 form label div {
-    font-size: 1rem;
-    align-self: flex-end;
-    color: var(--font-color-light);
+  font-size: 1rem;
+  align-self: flex-end;
+  color: var(--font-color-light);
 }
 
 .x-icon {
-    position: relative;
-    display: inline-block;
-    font-size: 1rem;
-    flex: 0 0 11ch;
-    height: 2rem;
-    background: url("./icons/delete-x.svg") no-repeat .5rem;
-    background-size: 1.5rem 1.5rem;
-    border-radius: .5rem;
-    cursor: pointer;
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  flex: 0 0 11ch;
+  height: 2rem;
+  background: url("./icons/delete-x.svg") no-repeat 0.5rem;
+  background-size: 1.5rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .x-icon:after {
-    content: "Delete";
-    position: absolute;
-    top: .3rem;
-    left: 2.5rem;
-    font-weight: 600;
-    color: var(--font-color-light);
+  content: "Delete";
+  position: absolute;
+  top: 0.3rem;
+  left: 2.5rem;
+  font-weight: 600;
+  color: var(--font-color-light);
 }
 
 .icon:last-child:not(:first-child) {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .red-icon:hover {
-    background-color: var(--accent-color-light-red);
+  background-color: var(--accent-color-light-red);
 }
 
 .save-icon {
-    width: 2rem;
-    height: 2rem;
-    background: url("./icons/save.svg") no-repeat center;
-    background-size: 1.5rem 1.5rem;
-    cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  background: url("./icons/save.svg") no-repeat center;
+  background-size: 1.5rem 1.5rem;
+  cursor: pointer;
 }
 
 .save-task {
-    align-items: center;
+  align-items: center;
 }
