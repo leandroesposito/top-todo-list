@@ -18,6 +18,13 @@ This project was specifically designed to demonstrate and practice:
 
 [View Live Demo](https://leandroesposito.github.io/top-todo-list/)
 
+## Screenshots
+
+![Empty page](https://github.com/leandroesposito/top-todo-list/blob/main/screenshots/1_empty.png)
+![New project](https://github.com/leandroesposito/top-todo-list/blob/main/screenshots/2_new_project.png)
+![Project](https://github.com/leandroesposito/top-todo-list/blob/main/screenshots/3_project.png)
+![New task](https://github.com/leandroesposito/top-todo-list/blob/main/screenshots/4_new_task.png)
+
 ## Project Architecture Overview
 
 ### 1. Object-Oriented Programming Principles
